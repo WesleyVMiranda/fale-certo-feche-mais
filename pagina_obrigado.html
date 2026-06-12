@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Compra confirmada | Fale Certo, Feche Mais</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --petro:  #071A2C;
+    --petro2: #0A2840;
+    --petro3: #0D3354;
+    --neon:   #00C896;
+    --neon2:  #00E6B0;
+    --muted:  #6BA8C4;
+    --cinza2: #C9D8E0;
+    --branco: #FFFFFF;
+    --ouro:   #F5C842;
+  }
+  html { scroll-behavior: smooth; background: #071A2C; }
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #071A2C;
+    background: var(--petro);
+    color: var(--branco);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  .wrap {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 60px 24px 80px;
+  }
+
+  /* CONFIRMAÇÃO */
+  .confirma-icon {
+    width: 88px; height: 88px;
+    background: linear-gradient(135deg, #00C896, #00E6B0);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 42px;
+    margin: 0 auto 28px;
+    box-shadow: 0 0 48px #00C89650;
+  }
+  .confirma-titulo {
+    text-align: center;
+    font-size: clamp(28px, 5vw, 42px);
+    font-weight: 900;
+    letter-spacing: -1px;
+    margin-bottom: 12px;
+    line-height: 1.15;
+  }
+  .confirma-titulo em {
+    font-style: normal;
+    color: var(--neon);
+  }
+  .confirma-sub {
+    text-align: center;
+    font-size: 17px;
+    color: var(--muted);
+    max-width: 480px;
+    margin: 0 auto 40px;
+    line-height: 1.65;
+  }
+
+  /* PASSOS */
+  .passos-titulo {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--neon);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+  .passos {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 48px;
+  }
+  .passo {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    background: var(--petro2);
+    border: 1px solid var(--petro3);
+    border-radius: 10px;
+    padding: 18px 22px;
+  }
+  .passo-num {
+    width: 36px; height: 36px;
+    background: linear-gradient(135deg, var(--neon), var(--neon2));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 14px;
+    font-weight: 900;
+    color: var(--petro);
+    flex-shrink: 0;
+  }
+  .passo-titulo {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--branco);
+    margin-bottom: 4px;
+  }
+  .passo-desc {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* UPSELL */
+  .upsell-box {
+    background: var(--petro2);
+    border: 2px solid var(--neon);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-bottom: 40px;
+    box-shadow: 0 0 40px #00C89620;
+  }
+  .upsell-header {
+    background: linear-gradient(135deg, var(--petro3), var(--petro2));
+    padding: 20px 28px;
+    border-bottom: 1px solid var(--petro3);
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .upsell-badge {
+    background: var(--ouro);
+    color: var(--petro);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+    padding: 4px 12px;
+    border-radius: 100px;
+    white-space: nowrap;
+  }
+  .upsell-header-titulo {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--branco);
+    line-height: 1.3;
+  }
+  .upsell-corpo {
+    padding: 24px 28px;
+  }
+  .upsell-desc {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.65;
+    margin-bottom: 20px;
+  }
+  .upsell-itens {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .upsell-itens li {
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--cinza2);
+  }
+  .check { color: var(--neon); flex-shrink: 0; }
+  .upsell-preco-area {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    flex-wrap: wrap;
+  }
+  .upsell-de {
+    font-size: 14px;
+    color: var(--muted);
+    text-decoration: line-through;
+  }
+  .upsell-por {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--neon);
+    letter-spacing: -1px;
+    line-height: 1;
+  }
+  .upsell-economia {
+    background: #00C89618;
+    border: 1px solid #00C89644;
+    color: var(--neon2);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 100px;
+  }
+  .btn-upsell {
+    display: block;
+    background: linear-gradient(135deg, #00C896, #00E6B0);
+    color: var(--petro);
+    text-align: center;
+    font-size: 16px;
+    font-weight: 800;
+    padding: 16px;
+    border-radius: 8px;
+    text-decoration: none;
+    margin-bottom: 10px;
+    transition: transform .15s, box-shadow .15s;
+    box-shadow: 0 0 24px #00C89630;
+  }
+  .btn-upsell:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 40px #00C89658;
+  }
+  .upsell-skip {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .upsell-skip a {
+    color: var(--muted);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* MENSAGEM FINAL */
+  .msg-final {
+    background: #00C89610;
+    border: 1px solid #00C89633;
+    border-left: 4px solid var(--neon);
+    border-radius: 0 8px 8px 0;
+    padding: 22px 24px;
+    margin-bottom: 40px;
+  }
+  .msg-final strong {
+    display: block;
+    font-size: 13px;
+    color: var(--neon2);
+    letter-spacing: 2px;
+    margin-bottom: 8px;
+  }
+  .msg-final p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  footer {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--petro3);
+    padding-top: 24px;
+    line-height: 1.7;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- CONFIRMAÇÃO -->
+  <div class="confirma-icon">✓</div>
+  <h1 class="confirma-titulo">Compra confirmada.<br>Bem-vindo ao método.</h1>
+  <p class="confirma-sub">Seu acesso ao <strong>Fale Certo, Feche Mais</strong> foi processado. Verifique seu e-mail: o link de download chegará em instantes.</p>
+
+  <!-- PASSOS -->
+  <p class="passos-titulo">Próximos passos</p>
+  <div class="passos">
+    <div class="passo">
+      <div class="passo-num">1</div>
+      <div>
+        <div class="passo-titulo">Acesse o seu e-mail</div>
+        <div class="passo-desc">O link de acesso foi enviado para o e-mail cadastrado na compra. Verifique a caixa de entrada e também o spam.</div>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">2</div>
+      <div>
+        <div class="passo-titulo">Faça o download do PDF</div>
+        <div class="passo-desc">Salve o arquivo no seu celular ou computador para acessar offline quando precisar durante atendimentos.</div>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">3</div>
+      <div>
+        <div class="passo-titulo">Comece pelo canal que você mais usa</div>
+        <div class="passo-desc">Leia a introdução do módulo escolhido, aplique um script no próximo atendimento e ajuste com base no resultado.</div>
+      </div>
+    </div>
+    <div class="passo">
+      <div class="passo-num">4</div>
+      <div>
+        <div class="passo-titulo">Cole o cheat sheet na sua mesa</div>
+        <div class="passo-desc">O bônus é imprimível. Deixe visível durante os atendimentos como referência rápida enquanto você internaliza os scripts.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPSELL: PLANILHA -->
+  <div class="upsell-box" id="oferta-extra">
+    <div class="upsell-header">
+      <span class="upsell-badge">OFERTA ESPECIAL</span>
+      <div class="upsell-header-titulo">Complete o kit com a Planilha de Metas e Performance</div>
+    </div>
+    <div class="upsell-corpo">
+      <p class="upsell-desc">Você tem os scripts. Agora coloque números no seu processo. Esta planilha transforma a atuação do seu time em dados, e dados em decisões.</p>
+      <ul class="upsell-itens">
+        <li><span class="check">✓</span> Dashboard automático com KPIs do time em tempo real</li>
+        <li><span class="check">✓</span> Ranking de vendedores calculado automaticamente</li>
+        <li><span class="check">✓</span> Funil de conversão por etapa (leads → propostas → vendas)</li>
+        <li><span class="check">✓</span> Metas individuais com semáforo de status</li>
+        <li><span class="check">✓</span> Análise mensal com gráfico de evolução</li>
+        <li><span class="check">✓</span> Lista suspensa de canal e fase do funil para padronizar lançamentos</li>
+      </ul>
+      <div class="upsell-preco-area">
+        <span class="upsell-de">R$ 27,00</span>
+        <span class="upsell-por">R$ 9,90</span>
+        <span class="upsell-economia">Você economiza R$ 17,10</span>
+      </div>
+      <!-- INSTRUÇÃO: Substitua o href pelo link de checkout da planilha na Kiwify -->
+      <a href="LINK_CHECKOUT_PLANILHA_KIWIFY" class="btn-upsell">
+        Quero a Planilha por R$ 9,90 →
+      </a>
+      <p class="upsell-skip">
+        <a onclick="document.getElementById('oferta-extra').style.display='none'">Não, prefiro gerenciar sem dados</a>
+      </p>
+    </div>
+  </div>
+
+  <!-- MENSAGEM FINAL -->
+  <div class="msg-final">
+    <strong>LEMBRE-SE</strong>
+    <p>Script é estrutura, não decoreba. O vendedor que entende a lógica por trás de cada abordagem consegue improvisar quando o lead foge do roteiro. Aplique um script por vez, ajuste com base no resultado e evolua com consistência.</p>
+  </div>
+
+  <footer>
+    <p>© 2026 Wesley Miranda. Todos os direitos reservados.</p>
+    <p>Dúvidas sobre o acesso? Entre em contato pelo suporte da Kiwify.</p>
+  </footer>
+
+</div>
+</body>
+</html>
